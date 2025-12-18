@@ -1,0 +1,22 @@
+{
+  "happy": [
+    { "type": "offline", "name": "Happy Tune 1", "file": "happy1.mp3" },
+    { "type": "youtube", "name": "Happy – Pharrell Williams", "url": "https://www.youtube.com/watch?v=ZbZSe6N_BXs" },
+    { "type": "youtube", "name": "6aduguluntada", "url": "https://youtu.be/6JGGFYIcrLY?si=SKghJwDCTPFJdX4Q" }
+  ],
+
+  "sad": [
+    { "type": "offline", "name": "Sad Melody 1", "file": "sad1.mp3" },
+    { "type": "youtube", "name": "Let Her Go – Passenger", "url": "https://www.youtube.com/watch?v=RB-RcX5DS5A" },
+    { "type": "youtube", "name": "Uppenantha", "url": "https://www.youtube.com/watch?v=RB-RcX5DS5A" },
+    { "type": "youtube", "name": "Oosupodu", "url": "https://youtu.be/e4N9al7vhVQ?si=oeQxiMe0YbSwOGmr" }
+  
+  ],
+
+  "neutral": [
+  { "type": "youtube", "name": "River Flows in You – Yiruma", "url": "https://www.youtube.com/watch?v=7maJOI3QMu0" },
+  { "type": "youtube", "name": "Varsham", "url": "https://youtu.be/RIriENOmOpo?si=yoBCt9hOk_qJAwYa "},
+  { "type": "youtube", "name": "Varsham", "url": "https://youtu.be/cULVDmIDIzI?si=5YF-r3ReJQRaysNG"},
+  { "type": "offline", "name": "Evarevarooo", "file": "neutral1.mp3" }
+   ]
+  }

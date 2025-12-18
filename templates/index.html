@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Emotion-Based Music Recommender</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Poppins, sans-serif;
+      background: linear-gradient(135deg, #ff6ec4, #7873f5);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 420px;
+      background: rgba(255,255,255,0.15);
+      padding: 25px;
+      border-radius: 18px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #ffcc00;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover { background: #ffe066; }
+
+    video, img {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 15px;
+      display: none;
+    }
+
+    #loading {
+      display: none;
+      margin-top: 15px;
+    }
+
+    .spinner {
+      width: 35px;
+      height: 35px;
+      border: 4px solid rgba(255,255,255,0.3);
+      border-top: 4px solid #fff;
+      border-radius: 50%;
+      margin: auto;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    .result-box {
+      margin-top: 20px;
+      background: rgba(255,255,255,0.25);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>🎵 Emotion-Based Music Recommender 🎶</h2>
+
+    <!-- Buttons -->
+    <button onclick="openFilePicker()">📁 Choose Photo</button>
+    <button onclick="startCamera()">📸 Use Camera</button>
+
+    <!-- Hidden file input -->
+    <form id="uploadForm" action="/analyze" method="POST" enctype="multipart/form-data">
+      <input type="file" id="imageInput" name="image" accept="image/*" style="display:none;" onchange="submitForm()">
+    </form>
+
+    <!-- Camera preview -->
+    <video id="camera" autoplay playsinline></video>
+
+    <!-- Captured preview -->
+    <img id="previewImage">
+
+    <!-- Action buttons -->
+    <button id="captureBtn" onclick="capturePhoto()" style="display:none;">✅ Capture</button>
+    <button id="retakeBtn" onclick="retakePhoto()" style="display:none;">🔄 Retake</button>
+    <button id="analyzeBtn" onclick="analyzePhoto()" style="display:none;">🎯 Analyze</button>
+
+    <!-- Loading -->
+    <div id="loading">
+      <div class="spinner"></div>
+      <p>Analyzing emotion...</p>
+    </div>
+
+    {% if emotion %}
+    <div class="result-box">
+      <p><strong>Emotion:</strong> {{ emotion }}</p>
+      <ul>
+        {% for song in songs %}
+          <li>
+            {% if song.type == "offline" %}
+              {{ song.name }}
+              <audio controls style="width:100%; margin-top:5px;">
+                <source src="{{ url_for('static', filename='music/' + song.file) }}">
+              </audio>
+            {% else %}
+              <a href="{{ song.url }}" target="_blank">▶ {{ song.name }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+
+  <script>
+    let cameraStream = null;
+    let capturedBlob = null;
+
+    function openFilePicker() {
+      stopCamera();
+      hideUI();
+      document.getElementById("imageInput").click();
+    }
+
+    function startCamera() {
+      stopCamera();
+      hideUI();
+      const video = document.getElementById("camera");
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          cameraStream = stream;
+          video.srcObject = stream;
+          video.style.display = "block";
+          document.getElementById("captureBtn").style.display = "block";
+        });
+    }
+
+    function stopCamera() {
+      if (cameraStream) {
+        cameraStream.getTracks().forEach(t => t.stop());
+        cameraStream = null;
+      }
+    }
+
+    function hideUI() {
+      ["camera","previewImage","captureBtn","retakeBtn","analyzeBtn"]
+        .forEach(id => document.getElementById(id).style.display = "none");
+    }
+
+    function capturePhoto() {
+      const video = document.getElementById("camera");
+      const canvas = document.createElement("canvas");
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext("2d").drawImage(video, 0, 0);
+
+      canvas.toBlob(blob => {
+        capturedBlob = blob;
+        stopCamera();
+        video.style.display = "none";
+
+        const preview = document.getElementById("previewImage");
+        preview.src = URL.createObjectURL(blob);
+        preview.style.display = "block";
+
+        document.getElementById("captureBtn").style.display = "none";
+        document.getElementById("retakeBtn").style.display = "block";
+        document.getElementById("analyzeBtn").style.display = "block";
+      });
+    }
+
+    function retakePhoto() {
+      capturedBlob = null;
+      hideUI();
+      startCamera();
+    }
+
+    function analyzePhoto() {
+      document.getElementById("loading").style.display = "block";
+      const file = new File([capturedBlob], "capture.jpg", { type: "image/jpeg" });
+      const dt = new DataTransfer();
+      dt.items.add(file);
+      document.getElementById("imageInput").files = dt.files;
+      document.getElementById("uploadForm").submit();
+    }
+
+    function submitForm() {
+      document.getElementById("loading").style.display = "block";
+      document.getElementById("uploadForm").submit();
+    }
+  </script>
+
+</body>
+</html>
