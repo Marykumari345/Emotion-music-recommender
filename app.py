@@ -15,25 +15,20 @@ def home():
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
-    # ✅ Check if image exists in request
     if 'image' not in request.files:
         return render_template('index.html', error='No image uploaded')
 
     image = request.files['image']
-
-    # ✅ Create folder if missing
     os.makedirs('static/images', exist_ok=True)
 
-    # ✅ Check empty filename
     if image.filename == '':
         return render_template('index.html', error='No file selected')
 
-    # ✅ Save image
     path = os.path.join('static/images', image.filename)
     image.save(path)
 
-    # ✅ Emotion detection (LIGHTWEIGHT MODE)
-    detector = FER(mtcnn=False)   # ✅ IMPORTANT: no TensorFlow, no PyTorch
+    # ✅ Lightweight FER mode (no TensorFlow/PyTorch)
+    detector = FER(mtcnn=False)
     img = cv2.imread(path)
     emotions = detector.detect_emotions(img)
 
@@ -42,11 +37,9 @@ def analyze():
     else:
         emotion = "neutral"
 
-    # ✅ Load songs
     with open('songs.json') as f:
         songs = json.load(f)
 
-    # ✅ Send emotion + songs to HTML
     return render_template('index.html', emotion=emotion, songs=songs.get(emotion, []))
 
 if __name__ == '__main__':
