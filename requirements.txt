@@ -3,3 +3,4 @@ opencv-python
 numpy
 mediapipe
 fer==22.4.0
+pandas
