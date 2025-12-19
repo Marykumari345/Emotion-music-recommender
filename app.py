@@ -32,8 +32,8 @@ def analyze():
     path = os.path.join('static/images', image.filename)
     image.save(path)
 
-    # ✅ Emotion detection
-    detector = FER(mtcnn=True)
+    # ✅ Emotion detection (LIGHTWEIGHT MODE)
+    detector = FER(mtcnn=False)   # ✅ IMPORTANT: no TensorFlow, no PyTorch
     img = cv2.imread(path)
     emotions = detector.detect_emotions(img)
 
