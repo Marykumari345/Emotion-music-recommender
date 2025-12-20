@@ -1,22 +1,77 @@
 {
   "happy": [
-    { "type": "offline", "name": "Happy Tune 1", "file": "happy1.mp3" },
-    { "type": "youtube", "name": "Happy – Pharrell Williams", "url": "https://www.youtube.com/watch?v=ZbZSe6N_BXs" },
-    { "type": "youtube", "name": "6aduguluntada", "url": "https://youtu.be/6JGGFYIcrLY?si=SKghJwDCTPFJdX4Q" }
+    { "type": "offline", "name": "Happy", "file": "happy1.mp3" },
+     { "type": "youtube", "name": "Kiliye kiliye ", "url": "https://youtu.be/dR9B_gPxjkk?si=KLPp9ECuzoTSSczX"},
+     { "type": "youtube", "name": "Vaalu kanuladana ", "url": "https://youtu.be/SkTzT9HgpBg?si=7Hm-laaU-oPg7N_j"},
+     { "type": "youtube", "name": "Puvvulo dagunna", "url": "https://youtu.be/NICkZRy64QY?si=5c91xkmYyek5V0WU "},
+     { "type": "youtube", "name": "Pachandaname ", "url": "https://youtu.be/sxn0T94mkJw?si=9-txjY5UpgVyDepU"},
+     { "type": "youtube", "name": "Golden sparrow", "url": " https://youtu.be/AAq06bS8UZM?si=sFaqtC7v75j0qXnh"},
+     { "type": "youtube", "name": "Vaa kannama", "url": " https://youtu.be/9fyOu2dxgOY?si=q28asm-z-XakbMya"},
+     { "type": "youtube", "name": "Manasilayo", "url": " https://youtu.be/5WsUIeNAtbM?si=A4blT6nYNUn8SOD3"},
+     { "type": "youtube", "name": "Sir madam  ", "url": "https://youtu.be/sWT7S6T0Qzw?si=GNa6Q6eiqvU00Ex3"},
+     { "type": "youtube", "name": "Mastaru mastaru", "url": " https://youtu.be/AXSm49NGkg8?si=9so0QftPb-4rg6uf"},
+     { "type": "youtube", "name": "Arerey Manasa", "url": "https://youtu.be/pb1NL71uFBs?si=WEp7BrB1BkEzjVqup "},
+     { "type": "youtube", "name": "Manohara", "url": "https://youtu.be/R2AdJEUnbhA?si=oOVa7lArFIbd3Rj0 "},
+     { "type": "youtube", "name": "Puttene prema ", "url": "https://youtu.be/OaRiebA5Zg8?si=ZhNry47-qZks0OcR"},
+     { "type": "youtube", "name": "Ranjithame", "url": "https://youtu.be/RoBavDxV-Y8?si=fqHKAzS_3TaRwNN7 "},
+     { "type": "youtube", "name": "Nenu nuvvantu", "url": "https://youtu.be/ANrTbPl6-Ew?si=CK_lJ0onJoA9yt9w "},
+     { "type": "youtube", "name": "Undipova ", "url": "https://youtu.be/Pm77L5Loazc?si=MKO66RHweJt8pjQ2"},
+     { "type": "youtube", "name": "Monica ", "url": "https://youtu.be/neOasLBWoy0?si=ag9d20Ng9DR0wxBu"},
+     { "type": "youtube", "name": "Nee jathaga", "url": " https://youtu.be/XJelQ8FUZ0o?si=EjqMKksrNltcc5Ua"},
+     { "type": "youtube", "name": "Konte choputho", "url": " https://youtu.be/dhIrlFsz50w?si=ZEqYxUcN2jqzHBRa"},
+     { "type": "youtube", "name": "Maate vinaduga", "url": " https://youtu.be/g3tDx7Jud3E?si=b5ZU4askvZ3pu5vl"},
+     { "type": "youtube", "name": "Panchadara Bomma", "url": "https://youtu.be/72-l2eiuAHY?si=cfNkEgZjfIfjgqS- "},
+     { "type": "youtube", "name": "Prema vennela", "url": "https://youtu.be/tpvNtKjlf5E?si=bwsz--o0Wy7q9VBo"},
+     { "type": "youtube", "name": "6aduguluntada", "url": "https://youtu.be/6JGGFYIcrLY?si=SKghJwDCTPFJdX4Q" }
   ],
 
   "sad": [
-    { "type": "offline", "name": "Sad Melody 1", "file": "sad1.mp3" },
-    { "type": "youtube", "name": "Let Her Go – Passenger", "url": "https://www.youtube.com/watch?v=RB-RcX5DS5A" },
+    { "type": "offline", "name": " dude", "file": "sad1.mp3" },
+     { "type": "youtube", "name": "Nee selavadigi ", "url": "https://youtu.be/EhzJ1c0d53s?si=PsMiknZ0lajhFH3h"},
+    { "type": "youtube", "name": "Mr perfect", "url": " https://youtu.be/_CB6W6svwB8?si=WD4OmioNUb0YJqvg"},
+    { "type": "youtube", "name": "Emi cheyamanduve", "url": "https://youtu.be/9RfsDY13hCM?si=PrsJKTF3aEoCvRTp"},
+    { "type": "youtube", "name": "Arjun Reddy", "url": " https://youtu.be/rHZAm6Mst8A?si=PocM7OSeweR_gL4t"},
+    { "type": "youtube", "name": "Manasantha mukkalu chesi", "url": "https://youtu.be/i_cKDAFG0Mo?si=vrYZlXwFnWrB3kUu "},
+    { "type": "youtube", "name": "Cheliya cheliya rc", "url": "https://youtu.be/0uWkmrseaR4?si=VZXiv7YXkzFOMdNa "},
+    { "type": "youtube", "name": "Parugu ", "url": "https://youtu.be/1HhjuUZhNvw?si=x4so_npJ5ImhElod"},
+    { "type": "youtube", "name": "Oopiri agutunnadhe", "url": "https://youtu.be/sANUOEhNAWw?si=vymBgyYwvvsJQHby "},
+    { "type": "youtube", "name": "Telisene ", "url": "https://youtu.be/oNCL9UlmnAg?si=0kQbyC0uyWvifJYG"},
+    { "type": "youtube", "name": "Bujji talli", "url": "https://youtu.be/JDdz309LbAA?si=cLJebuTQchyxk4gM "},
+    { "type": "youtube", "name": "Majili ", "url": "https://youtu.be/_mIYqnJiw-s?si=nvq3Imd7Y-JHnTdz"},
+    { "type": "youtube", "name": "Channa mereya ", "url": "https://youtu.be/284Ov7ysmfA?si=tuGuLrRRAC2rfr9S"},
+    { "type": "youtube", "name": "Bekhayali ", "url": "https://youtu.be/NO4BUCFJPqQ?si=qbUf1kQv17Rm9XH_"},
+    { "type": "youtube", "name": "Emai poyave ", "url": "https://youtu.be/Eyx0Hvi1_Ng?si=9-AoP2ewN5uWIyQB"},
+    { "type": "youtube", "name": "Emainadho ", "url": "https://youtu.be/t8oOYuFd-zw?si=dmH-T0wyeUo-ubek"},
+    { "type": "youtube", "name": "Yevevo kalalu kanna ", "url": "https://youtu.be/mo57poFjULw?si=P0cX1YGNfarANsms"},
+    { "type": "youtube", "name": "Amma amma ", "url": "https://youtu.be/SiQm2z2oFs4?si=PWAWkvjFMLC9ftyr"},
+    { "type": "youtube", "name": "Snehituda ", "url": "https://youtu.be/9Zz627bbv-w?si=yKso2zJiKuT_Pnz0"},
+    { "type": "youtube", "name": "Undiporadhe", "url": " https://youtu.be/oLE1ISzaf2k?si=IyK4Pqm01_24wE4z"},
     { "type": "youtube", "name": "Uppenantha", "url": "https://www.youtube.com/watch?v=RB-RcX5DS5A" },
     { "type": "youtube", "name": "Oosupodu", "url": "https://youtu.be/e4N9al7vhVQ?si=oeQxiMe0YbSwOGmr" }
   
   ],
 
   "neutral": [
-  { "type": "youtube", "name": "River Flows in You – Yiruma", "url": "https://www.youtube.com/watch?v=7maJOI3QMu0" },
+   { "type": "offline", "name": "Evarevarooo", "file": "neutral1.mp3" },
   { "type": "youtube", "name": "Varsham", "url": "https://youtu.be/RIriENOmOpo?si=yoBCt9hOk_qJAwYa "},
   { "type": "youtube", "name": "Varsham", "url": "https://youtu.be/cULVDmIDIzI?si=5YF-r3ReJQRaysNG"},
-  { "type": "offline", "name": "Evarevarooo", "file": "neutral1.mp3" }
-   ]
-  }
+   { "type": "youtube", "name": "Evare", "url": "https://youtu.be/KG5UfTiBrAo?si=jPsgUdYB623b--U8"},
+    { "type": "youtube", "name": "Choosa choosa ", "url": "https://youtu.be/d7yR-s_LKNI?si=jDOkjTIbabXxzNb8"},
+    { "type": "youtube", "name": "Paravasame", "url": " https://youtu.be/dBWmLFt8f-s?si=K-wNexCRw_wWf3_q"},
+    { "type": "youtube", "name": "Tammudu", "url": " https://youtu.be/84YRb8WwPXg?si=cyiUOTCwp-Hl3gTj"},
+    { "type": "youtube", "name": "Jaamu ratri ", "url": "https://youtu.be/XG6fhfHk9zg?si=jhpbVT3JY7Lrca4c"},
+    { "type": "youtube", "name": "Ee velalo neevu... ", "url": "https://youtu.be/pWPHlppi2i4?si=t9e2Nl-k06_Aqy2J"},
+    { "type": "youtube", "name": "melody1", "url": "https://youtu.be/qS9OmYoX2cQ?si=8YQ5AxzyLO_bGJ5E "},
+    { "type": "youtube", "name": "melody2", "url": "https://youtu.be/DDb7OILQMMA?si=dVm5JtkCpX97HoSn "},
+    { "type": "youtube", "name": "melody3", "url": "https://youtu.be/MvW8E1nwrE4?si=5HsGHvHzLU_Fk90F "},
+    { "type": "youtube", "name": "melody4", "url": "https://youtu.be/MOTFcbaiFlQ?si=B6s0-o07ufrVN3Zg "},
+    { "type": "youtube", "name": "melody5", "url": "https://youtu.be/Db97R2Gdxb0?si=B_uaNIZbkVijFbYd "},
+    { "type": "youtube", "name": "melody6", "url": "https://youtu.be/VQ2-HPwxAZY?si=Ml1PrkbTIhBy4VDw "},
+    { "type": "youtube", "name": "melody7", "url": "https://youtu.be/gJp1RRCOUSY?si=zF18VPM1kq9_jmiO "},
+    { "type": "youtube", "name": "melody8", "url": "https://youtu.be/CPTvFluGdHc?si=iw3Z9I1iGh50PONa "},
+    { "type": "youtube", "name": "melody9", "url": " https://youtu.be/d7yR-s_LKNI?si=TWfyw6yxYtlTikv5"},
+    { "type": "youtube", "name": "melody10", "url": "https://youtu.be/zxRilmBZ7FU?si=DO0ALSkxEgM_amac "},
+    { "type": "youtube", "name": "melody11", "url": "https://youtu.be/8PXUzdXxrl8?si=yOfse2U-w6EpvKps "},
+   
+]
+ }
