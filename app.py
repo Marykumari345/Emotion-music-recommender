@@ -1,12 +1,13 @@
 import os
+print("Running file:", os.path.abspath(__file__))
+
+print("Flask app is starting...")
+from flask import Flask, render_template, request
+from fer import FER
 import cv2
 import json
-from flask import Flask, render_template, request
 
 app = Flask(__name__)
-
-# ✅ Haar cascade for face detection
-face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 
 @app.route('/')
 def home():
@@ -26,18 +27,16 @@ def analyze():
     path = os.path.join('static/images', image.filename)
     image.save(path)
 
-    # ✅ Detect faces
+    # ✅ Lightweight FER mode (no TensorFlow/PyTorch)
+    detector = FER(mtcnn=False)
     img = cv2.imread(path)
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+    emotions = detector.detect_emotions(img)
 
-    # ✅ Simple emotion logic (placeholder)
-    if len(faces) > 0:
-        emotion = "happy"   # You can expand this logic later
+    if emotions:
+        emotion = max(emotions[0]["emotions"], key=emotions[0]["emotions"].get)
     else:
         emotion = "neutral"
 
-    # ✅ Load songs.json
     with open('songs.json') as f:
         songs = json.load(f)
 
@@ -45,4 +44,3 @@ def analyze():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
