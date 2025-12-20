@@ -1,44 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Emotion-Based Music Recommender</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        .error { color: red; }
-        .emotion { font-size: 24px; margin-top: 20px; }
-        .songs { margin-top: 20px; }
-    </style>
+  <title>Emotion-Based Music Recommender</title>
+  <style>
+    body {
+      margin:0; font-family:Poppins,sans-serif;
+      background:radial-gradient(circle,#0f0c29,#302b63,#24243e);
+      min-height:100vh; display:flex; justify-content:center; align-items:center;
+      color:#fff; overflow:hidden;
+    }
+    .floating {position:absolute;font-size:28px;opacity:.8;animation:floatUp 12s linear infinite;}
+    @keyframes floatUp {0%{transform:translateY(100vh);opacity:0;}20%{opacity:1;}100%{transform:translateY(-10vh);opacity:0;}}
+    .container {width:90%;max-width:480px;background:rgba(255,255,255,.1);padding:25px;border-radius:18px;text-align:center;backdrop-filter:blur(10px);box-shadow:0 8px 25px rgba(0,0,0,.6);z-index:10;}
+    h2 {margin-bottom:10px;text-shadow:2px 2px 6px rgba(0,0,0,.6);}
+    button {width:100%;padding:12px;margin-top:10px;border:none;border-radius:10px;background:linear-gradient(90deg,#ff6ec4,#7873f5);color:#fff;font-weight:bold;cursor:pointer;}
+    button:hover{transform:scale(1.05);}
+    video,img{width:100%;border-radius:12px;margin-top:15px;display:none;box-shadow:0 6px 18px rgba(0,0,0,.6);}
+    #loading{display:none;margin-top:15px;}
+    .spinner{width:35px;height:35px;border:4px solid rgba(255,255,255,.3);border-top:4px solid #fff;border-radius:50%;margin:auto;animation:spin 1s linear infinite;}
+    @keyframes spin{100%{transform:rotate(360deg);}}
+    .result-box{margin-top:20px;background:rgba(255,255,255,.2);padding:15px;border-radius:12px;text-align:left;}
+    .result-box a{color:#ffcc00;text-decoration:none;font-weight:bold;}
+  </style>
 </head>
 <body>
-    <h1>Emotion-Based Music Recommender</h1>
+  <!-- Floating symbols -->
+  <div class="floating" style="left:10%;animation-delay:0s;">❤️</div>
+  <div class="floating" style="left:30%;animation-delay:2s;">🎵</div>
+  <div class="floating" style="left:50%;animation-delay:4s;">💖</div>
+  <div class="floating" style="left:70%;animation-delay:6s;">🎶</div>
+  <div class="floating" style="left:85%;animation-delay:8s;">💕</div>
 
-    <!-- ✅ Upload or Camera Access -->
-    <form action="/analyze" method="post" enctype="multipart/form-data">
-        <input type="file" name="image" accept="image/*" capture="camera">
-        <button type="submit">Analyze Emotion</button>
+  <div class="container">
+    <h2>🎵 Emotion-Based Music Recommender 🎶</h2>
+    <p>Feel the rhythm of your mood ✨</p>
+
+    <!-- Buttons -->
+    <button onclick="openFilePicker()">📁 Choose Photo</button>
+    <button onclick="startCamera()">📸 Use Camera</button>
+
+    <!-- Hidden file input -->
+    <form id="uploadForm" action="/analyze" method="POST" enctype="multipart/form-data">
+      <input type="file" id="imageInput" name="image" accept="image/*" style="display:none;" onchange="submitForm()">
     </form>
 
-    <!-- ✅ Show errors -->
-    {% if error %}
-        <p class="error">{{ error }}</p>
-    {% endif %}
+    <!-- Camera & preview -->
+    <video id="camera" autoplay playsinline></video>
+    <img id="previewImage">
 
-    <!-- ✅ Show detected emotion -->
+    <!-- Action buttons -->
+    <button id="captureBtn" onclick="capturePhoto()" style="display:none;">✅ Capture</button>
+    <button id="retakeBtn" onclick="retakePhoto()" style="display:none;">🔄 Retake</button>
+    <button id="analyzeBtn" onclick="analyzePhoto()" style="display:none;">🎯 Analyze</button>
+
+    <!-- Loading -->
+    <div id="loading"><div class="spinner"></div><p>🎶 Analyzing your emotion...</p></div>
+
     {% if emotion %}
-        <p class="emotion">Detected Emotion: <strong>{{ emotion }}</strong></p>
+    <div class="result-box">
+      <p><strong>Emotion:</strong> {{ emotion }}</p>
+      <ul>
+        {% for song in songs %}
+          <li>
+            {% if song.type == "offline" %}
+              🎧 {{ song.name }}
+              <audio controls style="width:100%;margin-top:5px;">
+                <source src="{{ url_for('static', filename='music/' + song.file) }}">
+              </audio>
+            {% else %}
+              <a href="{{ song.url }}" target="_blank">▶ {{ song.name }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
     {% endif %}
+  </div>
 
-    <!-- ✅ Show recommended songs -->
-    {% if songs %}
-        <div class="songs">
-            <h3>Recommended Songs:</h3>
-            <ul>
-                {% for song in songs %}
-                    <li>{{ song }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
+  <script>
+    let cameraStream=null,capturedBlob=null;
+    function openFilePicker(){stopCamera();hideUI();document.getElementById("imageInput").click();}
+    function startCamera(){stopCamera();hideUI();const v=document.getElementById("camera");navigator.mediaDevices.getUserMedia({video:true}).then(s=>{cameraStream=s;v.srcObject=s;v.style.display="block";document.getElementById("captureBtn").style.display="block";});}
+    function stopCamera(){if(cameraStream){cameraStream.getTracks().forEach(t=>t.stop());cameraStream=null;}}
+    function hideUI(){["camera","previewImage","captureBtn","retakeBtn","analyzeBtn"].forEach(id=>document.getElementById(id).style.display="none");}
+    function capturePhoto(){const v=document.getElementById("camera"),c=document.createElement("canvas");c.width=v.videoWidth;c.height=v.videoHeight;c.getContext("2d").drawImage(v,0,0);c.toBlob(b=>{capturedBlob=b;stopCamera();v.style.display="none";const p=document.getElementById("previewImage");p.src=URL.createObjectURL(b);p.style.display="block";document.getElementById("captureBtn").style.display="none";document.getElementById("retakeBtn").style.display="block";document.getElementById("analyzeBtn").style.display="block";});}
+    function retakePhoto(){capturedBlob=null;hideUI();startCamera();}
+    function analyzePhoto(){document.getElementById("loading").style.display="block";const f=new File([capturedBlob],"capture.jpg",{type:"image/jpeg"}),dt=new DataTransfer();dt.items.add(f);document.getElementById("imageInput").files=dt.files;document.getElementById("uploadForm").submit();}
+    function submitForm(){document.getElementById("loading").style.display="block";document.getElementById("uploadForm").submit();}
+  </script>
 </body>
 </html>
